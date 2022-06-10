@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tc1">Bienvenidos a mi vista lanscape</string>
+    <color name="color_texto">#FFFFFF</color>
+    <color name="color_fondo">#FF0E615A</color>
+    <string name="app_name">movcompdzp2022a</string>
+    <string name="saludo">Saludo</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tc1">Welcome to my the landscape view</string>
+    <color name="color_texto">#fff</color>
+    <color name="color_fondo">#510808</color>
+    <string name="app_name">movcompdzp2022a</string>
+    <string name="saludo">Saludo</string>
+</resources>

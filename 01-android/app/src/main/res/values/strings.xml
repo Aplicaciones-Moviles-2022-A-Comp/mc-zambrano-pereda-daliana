@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">movcompdzp2022a</string>
+    <string name="tc1">Hola amigos</string>
+    <color name="color_texto">#0C0C0C</color>
+    <color name="color_fondo">#fff</color>
+    <string name="saludo">Saludo</string>
 </resources>
