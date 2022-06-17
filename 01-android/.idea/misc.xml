@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/daliana.zambrano/Documents/Github/mc-zambrano-pereda-daliana/01-android/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/daliana.zambrano/Documents/Github/mc-zambrano-pereda-daliana/01-android/app/src/main/res/layout/activity_aciclo_vida.xml" value="0.1" />
+        <entry key="..\:/Users/daliana.zambrano/Documents/Github/mc-zambrano-pereda-daliana/01-android/app/src/main/res/layout/activity_blistview.xml" value="0.21" />
+        <entry key="..\:/Users/daliana.zambrano/Documents/Github/mc-zambrano-pereda-daliana/01-android/app/src/main/res/layout/activity_main.xml" value="0.2" />
       </map>
     </option>
   </component>
