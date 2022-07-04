@@ -1,0 +1,44 @@
+PELICULAS
+ID_PELICULAS, NOMBRE_PELICULA, AÑO_CREACION, NUMERO_SAGAS, PRESUPUESTO
+P1, Blancanieves y los 7 enanitos, 1937, 1, 1488423
+P2, La Sirenita, 1989, 2, 40000000 
+P3, La Bella y la Bestia, 1991, 1, 25000000
+P5, Aladdin, 1992, 1, 28000000
+P6, Cenicienta, 1950, 3, 29000000
+
+
+
+PERSONAJES
+ID_PERSONAJES, NOMBRE_PERSONAJE, EDAD, NOMBRE_PELICULA, ES_PRINCESA
+D1, Blancanieves, 14, Blancanieves y los 7 enanitos, SI
+D2, Bella, 17, La Bella y la Bestia, SI
+D3, Hada Madrina, 50, Cenicienta, NO
+D4, Cenicienta, 18, Cenicienta, SI
+D5, Principe Encantador, 20, Cenicienta, NO
+D6, Ariel, 16, La Sirenita, SÍ
+D7, Jasmine, 16, Aladdin, SI
+D8, Aladdin, 18, Aladdin, NO
+D9, Flounder, 7, La Sirenita, NO
+D10, Gaston, 24, La Bella y la Bestia, NO
+
+
+RELACIONES
+P1: Blancanieves y los 7 enanitos:
+	D1, Blancanieves
+
+P2: La Sirenita:
+	D6, Ariel,
+	D9, Flounder
+
+P3: La Bella y la Bestia:
+	D2, Bella,
+	D10, Gaston
+
+P5: Aladdin:
+	D7, Jasmine,
+	D8, Aladdin
+
+P6: Cenicienta:
+	D3, Hada Madrina
+	D4, Cenicienta
+	

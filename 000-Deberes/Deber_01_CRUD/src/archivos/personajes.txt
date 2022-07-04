@@ -1,0 +1,11 @@
+ID_PERSONAJES,NOMBRE_PERSONAJE,EDAD,GENERO,NOMBRE_PELICULA,ES_PRINCESA
+D1,Blancanieves,14,F,Blancanieves y los 7 enanitos,SI
+D2,Bella,17,F,La Bella y la Bestia,SI
+D3,Hada Madrina,F,50,Cenicienta,NO
+D4,Cenicienta,F,18,Cenicienta,SI
+D5,Principe Encantador,M,20,Cenicienta,NO
+D6,Ariel,16,F,La Sirenita,SI
+D7,Jasmine,16,F,Aladdin,SI
+D8,Aladdin,18,M,Aladdin,NO
+D9,FLOUNDER,7,M,La Sirenita,NO
+D10,Gaston,18,M,La Bella y la Bestia,NO

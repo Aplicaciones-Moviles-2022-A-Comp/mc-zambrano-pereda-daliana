@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4bffc18-e296-48e6-94ad-03948d309234" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../000-Deberes/000-Deber1/D1_CRUD/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/menu/menu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../01-android/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../01-android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/movcompdzp2022a/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/movcompdzp2022a/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-en-land/TC1-LandsEN.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-en-land/TC1-LandsEN.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-en-port/TC1-PortEN.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-en-port/TC1-PortEN.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-es-land/TC1-LandsES.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-es-land/TC1-LandsES.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-es-port/TC1-PortES.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-es-port/TC1-PortES.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/movcompdzp2022a/BEntrenador.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/movcompdzp2022a/BEntrenador.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/movcompdzp2022a/BListview.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/movcompdzp2022a/BListview.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,18 +36,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/daliana.zambrano/Documents/Github/mc-zambrano-pereda-daliana/000-Deberes/000-Deber1/D1_CRUD",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainKt" />
@@ -80,6 +74,7 @@
       <workItem from="1653887865617" duration="11211000" />
       <workItem from="1655476213550" duration="2324000" />
       <workItem from="1655481218598" duration="435000" />
+      <workItem from="1656810242972" duration="330000" />
     </task>
     <servers />
   </component>

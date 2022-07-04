@@ -1,13 +1,22 @@
 package com.example.movcompdzp2022a
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
 
 class BListview : AppCompatActivity() {
-    val arreglo: ArrayList<Int> = arrayListOf(1,2,3,4,5)
+  //  val arreglo: ArrayList<Int> = arrayListOf(1,2,3,4,5)
+    val arreglo: ArrayList<BEntrenador> = BBaseDatosMemoria.arregloBEntrenador
+    var idItemSeleccionado = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +37,82 @@ class BListview : AppCompatActivity() {
             .setOnClickListener {
                 anadirNumero(adaptador)
             }
+        registerForContextMenu(listView)
+    }
+
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        //Llenamos las opciones del menu
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        //Obtener el id del ArrayListSeleccionado
+        val info = menuInfo as AdapterView.AdapterContextMenuInfo
+        val id = info.position
+        idItemSeleccionado = id
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.mi_editar -> {
+                "${idItemSeleccionado}"
+                return true
+            }
+            R.id.mi_eliminar -> {
+                abrirDialogo()
+                "${idItemSeleccionado}"
+                return true
+            }
+            else -> super.onContextItemSelected(item)
+        }
+    }
+
+    fun abrirDialogo(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("¿Desea eliminar?")
+        builder.setPositiveButton(
+            "Aceptar",
+            DialogInterface.OnClickListener { dialog, which ->
+            }
+        )
+        builder.setNegativeButton(
+            "Cancelar",
+            null
+        )
+
+        val opciones = resources.getStringArray(
+            R.array.string_array_opciones_dialog
+        )
+
+        val seleccionPrevia = booleanArrayOf(
+            true,
+            false,
+            false
+        )
+        builder.setMultiChoiceItems(
+            opciones,
+            seleccionPrevia,
+            {dialog,
+            which,
+            isChecked ->
+                "Dio click en el item ${which}"
+            }
+        )
+
+        val dialogo = builder.create()
+        dialogo.show()
     }
 
     fun anadirNumero(
-        adaptador:ArrayAdapter<Int>
+        adaptador:ArrayAdapter<BEntrenador>
     ){
-        arreglo.add(1)
+        arreglo.add(
+            BEntrenador("Daliana", "Zambrano")
+        )
         adaptador.notifyDataSetChanged()
     }
 }
