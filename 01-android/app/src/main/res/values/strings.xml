@@ -19,4 +19,5 @@
         <item>Martes</item>
         <item>Miercoles</item>
     </string-array>
+    <string name="title_activity_trabajo_en_clase02">TrabajoEnClase02</string>
 </resources>

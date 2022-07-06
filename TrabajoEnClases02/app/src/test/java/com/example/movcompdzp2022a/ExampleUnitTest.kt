@@ -1,4 +1,4 @@
-package com.example.trabajoenclases02
+package com.example.movcompdzp2022a
 
 import org.junit.Test
 

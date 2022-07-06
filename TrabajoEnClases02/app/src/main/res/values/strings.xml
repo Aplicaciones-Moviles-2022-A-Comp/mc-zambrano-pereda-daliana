@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TrabajoEnClases02</string>
+    <string name="textViewName">TextView</string>
     <string name="nameBtn">Aumentar</string>
     <integer name="numeroInicial">0</integer>
 </resources>
