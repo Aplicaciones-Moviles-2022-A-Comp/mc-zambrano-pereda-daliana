@@ -93,8 +93,7 @@ class ListaPersonajes : AppCompatActivity() {
 
         val btnCrearPersonaje = findViewById<Button>(R.id.bt_CrearPersonaje)
         btnCrearPersonaje.setOnClickListener {
-            val intent = Intent (this, CrearPersonaje::class.java)
-            startActivity(intent)
+            abrirActividadAddPersonaje(CrearPersonaje::class.java)
         }
 
         this.registerForContextMenu(listaPersonajes)
@@ -118,10 +117,12 @@ class ListaPersonajes : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.mi_editarPersonaje -> {
-                abrirActividadEditarJugador(Editar_Personaje::class.java)
+                Log.i("context-menu", "Edit position: ${personajeSeleccionado}")
+                abrirActividadEditarPersonaje(Editar_Personaje::class.java)
                 return true
             }
             R.id.mi_eliminarPersonaje -> {
+                Log.i("context-menu", "Delete position: ${personajeSeleccionado}")
                 eliminarJugador(personajeSeleccionado)
                 return true
             }
@@ -129,7 +130,7 @@ class ListaPersonajes : AppCompatActivity() {
         }
     }
 
-    fun abrirActividadEditarJugador(
+    fun abrirActividadEditarPersonaje(
         clase: Class<*>
     ) {
         val intentEditarJugador = Intent(this, clase)
@@ -138,7 +139,7 @@ class ListaPersonajes : AppCompatActivity() {
         resultEditarPersonaje.launch(intentEditarJugador)
     }
 
-    fun abrirActividadAddJugador(
+    fun abrirActividadAddPersonaje(
         clase: Class<*>
     ) {
         val intentAddNewJugador = Intent(this, clase)

@@ -15,9 +15,9 @@ class Pelicula (
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
-        parcel.readValue(Int::class.java.classLoader) as? Int,
-        parcel.readValue(String::class.java.classLoader) as? String,
-        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readInt(),
+        parcel.readString(),
+        parcel.readInt(),
         parcel.readString()
     ) {
     }
