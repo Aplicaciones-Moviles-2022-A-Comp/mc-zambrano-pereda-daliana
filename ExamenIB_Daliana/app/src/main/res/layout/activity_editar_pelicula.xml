@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Editar_Pelicula">
+
+    <TextView
+        android:id="@+id/tv_nuevaPelicula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Editar Pelicula de Disney"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_NombrePelicula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Nombre de la película"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_nuevaPelicula"
+        app:layout_constraintStart_toStartOf="@+id/tv_nuevaPelicula"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nuevaPelicula" />
+
+    <EditText
+        android:id="@+id/tpn_nombreInput"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/tv_NombrePelicula"
+        app:layout_constraintStart_toStartOf="@+id/tv_NombrePelicula"
+        app:layout_constraintTop_toBottomOf="@+id/tv_NombrePelicula" />
+
+    <TextView
+        android:id="@+id/tv_anioCreacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Año de creación"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tpn_nombreInput"
+        app:layout_constraintStart_toStartOf="@+id/tpn_nombreInput"
+        app:layout_constraintTop_toBottomOf="@+id/tpn_nombreInput" />
+
+    <EditText
+        android:id="@+id/eTN_anioCreacionInput"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:textSize="14sp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/tv_anioCreacion"
+        app:layout_constraintStart_toStartOf="@+id/tv_anioCreacion"
+        app:layout_constraintTop_toBottomOf="@+id/tv_anioCreacion" />
+
+    <TextView
+        android:id="@+id/tv_numSagas"
+        android:layout_width="127dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="30dp"
+        android:text="Número de Sagas"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/eTN_anioCreacionInput"
+        app:layout_constraintStart_toStartOf="@+id/eTN_anioCreacionInput"
+        app:layout_constraintTop_toBottomOf="@+id/eTN_anioCreacionInput" />
+
+    <TextView
+        android:id="@+id/sp_numSagas"
+        android:layout_width="275dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_numSagas"
+        app:layout_constraintStart_toStartOf="@+id/tv_numSagas"
+        app:layout_constraintTop_toBottomOf="@+id/tv_numSagas" />
+
+    <TextView
+        android:id="@+id/tv_presupuesto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Presupuesto"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/sp_numSagas"
+        app:layout_constraintStart_toStartOf="@+id/sp_numSagas"
+        app:layout_constraintTop_toBottomOf="@+id/sp_numSagas" />
+
+    <EditText
+        android:id="@+id/etND_presupuestoInput"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:textSize="14sp"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/tv_presupuesto"
+        app:layout_constraintStart_toStartOf="@+id/tv_presupuesto"
+        app:layout_constraintTop_toBottomOf="@+id/tv_presupuesto" />
+
+    <TextView
+        android:id="@+id/tv_exitoMercado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:text="¿Tuvo éxito en el mercado?"
+        app:layout_constraintEnd_toEndOf="@+id/etND_presupuestoInput"
+        app:layout_constraintStart_toStartOf="@+id/etND_presupuestoInput"
+        app:layout_constraintTop_toBottomOf="@+id/etND_presupuestoInput" />
+
+    <TextView
+        android:id="@+id/sp_exitoMercado"
+        android:layout_width="275dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_exitoMercado"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/tv_exitoMercado"
+        app:layout_constraintTop_toBottomOf="@+id/tv_exitoMercado" />
+
+    <Button
+        android:id="@+id/btn_cancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_GuardadPelicula"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_exitoMercado"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <Button
+        android:id="@+id/btn_GuardadPelicula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:text="Guardar cambios"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_exitoMercado"
+        app:layout_constraintVertical_bias="0.509" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

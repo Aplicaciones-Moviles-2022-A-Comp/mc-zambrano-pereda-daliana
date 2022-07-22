@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearPelicula">
+
+    <TextView
+        android:id="@+id/tv_nuevaPeliculaC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Nueva Película de Disney"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_NombrePeliculaC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Nombre de la película"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_nuevaPeliculaC"
+        app:layout_constraintStart_toStartOf="@+id/tv_nuevaPeliculaC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nuevaPeliculaC" />
+
+    <EditText
+        android:id="@+id/tpn_nombreInputC"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/tv_NombrePeliculaC"
+        app:layout_constraintStart_toStartOf="@+id/tv_NombrePeliculaC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_NombrePeliculaC" />
+
+    <TextView
+        android:id="@+id/tv_anioCreacionC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Año de creación"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tpn_nombreInputC"
+        app:layout_constraintStart_toStartOf="@+id/tpn_nombreInputC"
+        app:layout_constraintTop_toBottomOf="@+id/tpn_nombreInputC" />
+
+    <EditText
+        android:id="@+id/eTN_anioCreacionInputC"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:textSize="14sp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/tv_anioCreacionC"
+        app:layout_constraintStart_toStartOf="@+id/tv_anioCreacionC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_anioCreacionC" />
+
+    <TextView
+        android:id="@+id/tv_numSagasC"
+        android:layout_width="127dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="30dp"
+        android:text="Número de Sagas"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/eTN_anioCreacionInputC"
+        app:layout_constraintStart_toStartOf="@+id/eTN_anioCreacionInputC"
+        app:layout_constraintTop_toBottomOf="@+id/eTN_anioCreacionInputC" />
+
+    <TextView
+        android:id="@+id/sp_numSagasC"
+        android:layout_width="275dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_numSagasC"
+        app:layout_constraintStart_toStartOf="@+id/tv_numSagasC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_numSagasC" />
+
+    <TextView
+        android:id="@+id/tv_presupuestoC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Presupuesto"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/sp_numSagasC"
+        app:layout_constraintStart_toStartOf="@+id/sp_numSagasC"
+        app:layout_constraintTop_toBottomOf="@+id/sp_numSagasC" />
+
+    <EditText
+        android:id="@+id/etND_presupuestoInputC"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:textSize="14sp"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/tv_presupuestoC"
+        app:layout_constraintStart_toStartOf="@+id/tv_presupuestoC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_presupuestoC" />
+
+    <TextView
+        android:id="@+id/tv_exitoMercadoC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:text="¿Tuvo éxito en el mercado? (SI/NO)"
+        app:layout_constraintEnd_toEndOf="@+id/etND_presupuestoInputC"
+        app:layout_constraintStart_toStartOf="@+id/etND_presupuestoInputC"
+        app:layout_constraintTop_toBottomOf="@+id/etND_presupuestoInputC" />
+
+    <TextView
+        android:id="@+id/sp_exitoMercadoC"
+        android:layout_width="275dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_exitoMercadoC"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/tv_exitoMercadoC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_exitoMercadoC" />
+
+    <Button
+        android:id="@+id/btn_cancelarC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:text="Cancelar"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_GuardadPeliculaC"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_exitoMercadoC"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <Button
+        android:id="@+id/btn_GuardadPeliculaC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:text="Guardar "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_exitoMercadoC"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
+</androidx.constraintlayout.widget.ConstraintLayout>

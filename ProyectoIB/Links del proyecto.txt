@@ -1,0 +1,10 @@
+Adjunto los links de mi proyecto: 
+	
+Azure DevOps: 
+https://dev.azure.com/dalianazambrano/ProyectoIB_Moviles Consta de Épicas y Historias de usuario con sus respectiva descripción y sus criterios de aceptación
+	
+Figma (Diseño de Base de Datos): 
+https://www.figma.com/file/tujNtY2Xlqn2laI86Pn2TW/ProyectoIB_Moviles_BD?node-id=0%3A1
+	
+Figma (MockUp): 
+https://www.figma.com/file/IGJ7xjz9yFXGkzHMXNcepV/ProyectoIB_Moviles_Mockup?node-id=0%3A1
