@@ -29,8 +29,6 @@ class MenuIzquierdo : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMenuIzquierdo.toolbar)
 
-        reciclerView = findViewById(R.id.id_reciclerview)
-
         binding.appBarMenuIzquierdo.fab.setOnClickListener { view ->
             val intent = Intent (this, AgregarNota::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

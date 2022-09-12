@@ -31,17 +31,17 @@ class Signin : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signin)
+        //setContentView(R.layout.activity_signin)
 
-        signInButton = findViewById(R.id.button2)
+        //signInButton = findViewById(R.id.button2)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+       /* val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-
+*/
         auth = Firebase.auth
 
         signInButton.setOnClickListener {
