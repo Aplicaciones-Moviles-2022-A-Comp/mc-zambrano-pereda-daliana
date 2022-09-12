@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearPersonaje">
+
+    <TextView
+        android:id="@+id/tv_nuevoPersonajeC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Nuevo Personaje de Disney"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_NombrePersonajeC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Nombre del personaje"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_nuevoPersonajeC"
+        app:layout_constraintStart_toStartOf="@+id/tv_nuevoPersonajeC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nuevoPersonajeC" />
+
+    <EditText
+        android:id="@+id/tpn_nombreInputPerC"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/tv_NombrePersonajeC"
+        app:layout_constraintStart_toStartOf="@+id/tv_NombrePersonajeC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_NombrePersonajeC" />
+
+    <TextView
+        android:id="@+id/tv_edadPerC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Edad"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tpn_nombreInputPerC"
+        app:layout_constraintStart_toStartOf="@+id/tpn_nombreInputPerC"
+        app:layout_constraintTop_toBottomOf="@+id/tpn_nombreInputPerC" />
+
+    <EditText
+        android:id="@+id/eTN_edadInputC"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:textSize="14sp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/tv_edadPerC"
+        app:layout_constraintStart_toStartOf="@+id/tv_edadPerC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_edadPerC" />
+
+    <TextView
+        android:id="@+id/tv_generoC"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Género"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/eTN_edadInputC"
+        app:layout_constraintStart_toStartOf="@+id/eTN_edadInputC"
+        app:layout_constraintTop_toBottomOf="@+id/eTN_edadInputC" />
+
+    <EditText
+        android:id="@+id/sp_generoC"
+        android:layout_width="275dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_generoC"
+        app:layout_constraintStart_toStartOf="@+id/tv_generoC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_generoC" />
+
+    <TextView
+        android:id="@+id/tv_nombrePeliculaC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de la Película"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/sp_generoC"
+        app:layout_constraintStart_toStartOf="@+id/sp_generoC"
+        app:layout_constraintTop_toBottomOf="@+id/sp_generoC" />
+
+    <EditText
+        android:id="@+id/etNP_nombrePeliInputC"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/tv_nombrePeliculaC"
+        app:layout_constraintStart_toStartOf="@+id/tv_nombrePeliculaC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nombrePeliculaC" />
+
+    <TextView
+        android:id="@+id/tv_princesaC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="¿El personaje es una princesa? (SI/NO)"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/etNP_nombrePeliInputC"
+        app:layout_constraintStart_toStartOf="@+id/etNP_nombrePeliInputC"
+        app:layout_constraintTop_toBottomOf="@+id/etNP_nombrePeliInputC" />
+
+    <EditText
+        android:id="@+id/sp_princesaC"
+        android:layout_width="275dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_princesaC"
+        app:layout_constraintStart_toStartOf="@+id/tv_princesaC"
+        app:layout_constraintTop_toBottomOf="@+id/tv_princesaC" />
+
+    <Button
+        android:id="@+id/btn_cancelarPerC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_guardarPerC"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_princesaC"
+        app:layout_constraintVertical_bias="0.504" />
+
+    <Button
+        android:id="@+id/btn_guardarPerC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:text="Guardar "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_princesaC"
+        app:layout_constraintVertical_bias="0.504" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

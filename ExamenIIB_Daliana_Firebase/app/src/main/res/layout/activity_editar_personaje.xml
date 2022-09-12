@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Constraint"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.movcompdzp2022a.Editar_Personaje">
+
+    <TextView
+        android:id="@+id/tv_nuevoPersonaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Editar Personajes de Disney"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_NombrePersonaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Nombre del personaje"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_nuevoPersonaje"
+        app:layout_constraintStart_toStartOf="@+id/tv_nuevoPersonaje"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nuevoPersonaje" />
+
+    <EditText
+        android:id="@+id/tpn_nombreInputPer"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/tv_NombrePersonaje"
+        app:layout_constraintStart_toStartOf="@+id/tv_NombrePersonaje"
+        app:layout_constraintTop_toBottomOf="@+id/tv_NombrePersonaje" />
+
+    <TextView
+        android:id="@+id/tv_edadPer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Edad"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tpn_nombreInputPer"
+        app:layout_constraintStart_toStartOf="@+id/tpn_nombreInputPer"
+        app:layout_constraintTop_toBottomOf="@+id/tpn_nombreInputPer" />
+
+    <EditText
+        android:id="@+id/eTN_edadInput"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:textSize="14sp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/tv_edadPer"
+        app:layout_constraintStart_toStartOf="@+id/tv_edadPer"
+        app:layout_constraintTop_toBottomOf="@+id/tv_edadPer" />
+
+    <TextView
+        android:id="@+id/tv_genero"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Género"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/eTN_edadInput"
+        app:layout_constraintStart_toStartOf="@+id/eTN_edadInput"
+        app:layout_constraintTop_toBottomOf="@+id/eTN_edadInput" />
+
+    <EditText
+        android:id="@+id/sp_genero"
+        android:layout_width="275dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_genero"
+        app:layout_constraintStart_toStartOf="@+id/tv_genero"
+        app:layout_constraintTop_toBottomOf="@+id/tv_genero" />
+
+    <TextView
+        android:id="@+id/tv_nombrePelicula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de la Película"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/sp_genero"
+        app:layout_constraintStart_toStartOf="@+id/sp_genero"
+        app:layout_constraintTop_toBottomOf="@+id/sp_genero" />
+
+    <EditText
+        android:id="@+id/etNP_nombrePeliInput"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/tv_nombrePelicula"
+        app:layout_constraintStart_toStartOf="@+id/tv_nombrePelicula"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nombrePelicula" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="¿El personaje es una princesa? (SI/NO)"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/etNP_nombrePeliInput"
+        app:layout_constraintStart_toStartOf="@+id/etNP_nombrePeliInput"
+        app:layout_constraintTop_toBottomOf="@+id/etNP_nombrePeliInput" />
+
+    <EditText
+        android:id="@+id/sp_princesa"
+        android:layout_width="275dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/btn_cancelarPer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_guardarPer"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_princesa"
+        app:layout_constraintVertical_bias="0.504" />
+
+    <Button
+        android:id="@+id/btn_guardarPer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:text="Guardar Cambios"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_princesa"
+        app:layout_constraintVertical_bias="0.504" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
