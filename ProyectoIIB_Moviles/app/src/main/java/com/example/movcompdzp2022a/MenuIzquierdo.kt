@@ -1,5 +1,6 @@
 package com.example.movcompdzp2022a
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -11,12 +12,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.example.movcompdzp2022a.databinding.ActivityMenuIzquierdoBinding
 
 class MenuIzquierdo : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMenuIzquierdoBinding
+    private lateinit var reciclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +29,12 @@ class MenuIzquierdo : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMenuIzquierdo.toolbar)
 
+        reciclerView = findViewById(R.id.id_reciclerview)
+
         binding.appBarMenuIzquierdo.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val intent = Intent (this, AgregarNota::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent)
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
