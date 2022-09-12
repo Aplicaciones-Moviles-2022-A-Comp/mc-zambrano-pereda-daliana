@@ -75,7 +75,7 @@
         app:layout_constraintStart_toStartOf="@+id/eTN_edadInput"
         app:layout_constraintTop_toBottomOf="@+id/eTN_edadInput" />
 
-    <TextView
+    <EditText
         android:id="@+id/sp_genero"
         android:layout_width="275dp"
         android:layout_height="40dp"
@@ -113,13 +113,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="¿El personake es una princesa? (SI/NO)"
+        android:text="¿El personaje es una princesa? (SI/NO)"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/etNP_nombrePeliInput"
         app:layout_constraintStart_toStartOf="@+id/etNP_nombrePeliInput"
         app:layout_constraintTop_toBottomOf="@+id/etNP_nombrePeliInput" />
 
-    <TextView
+    <EditText
         android:id="@+id/sp_princesa"
         android:layout_width="275dp"
         android:layout_height="40dp"

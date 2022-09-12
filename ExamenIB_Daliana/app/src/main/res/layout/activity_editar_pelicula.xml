@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="Editar Pelicula de Disney"
+        android:text="Editar Película de Disney"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,12 +75,13 @@
         app:layout_constraintStart_toStartOf="@+id/eTN_anioCreacionInput"
         app:layout_constraintTop_toBottomOf="@+id/eTN_anioCreacionInput" />
 
-    <TextView
+    <EditText
         android:id="@+id/sp_numSagas"
         android:layout_width="275dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:textSize="14sp"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/tv_numSagas"
         app:layout_constraintStart_toStartOf="@+id/tv_numSagas"
         app:layout_constraintTop_toBottomOf="@+id/tv_numSagas" />
@@ -119,7 +120,7 @@
         app:layout_constraintStart_toStartOf="@+id/etND_presupuestoInput"
         app:layout_constraintTop_toBottomOf="@+id/etND_presupuestoInput" />
 
-    <TextView
+    <EditText
         android:id="@+id/sp_exitoMercado"
         android:layout_width="275dp"
         android:layout_height="40dp"

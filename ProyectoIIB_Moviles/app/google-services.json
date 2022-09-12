@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "893620495127",
+    "project_id": "movcompdzp",
+    "storage_bucket": "movcompdzp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893620495127:android:054f666e5149f30bf68d52",
+        "android_client_info": {
+          "package_name": "com.example.movcompdzp2022a"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893620495127-nu6jaf0igde25e6qn9i1h6vs1n8gejat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjaEDq4G0-bNRLK6ntu6fJQcjlhIE42ic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893620495127-nu6jaf0igde25e6qn9i1h6vs1n8gejat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

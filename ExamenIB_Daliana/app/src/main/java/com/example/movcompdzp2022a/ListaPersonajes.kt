@@ -29,7 +29,7 @@ class ListaPersonajes : AppCompatActivity() {
         if (result.resultCode == Activity.RESULT_OK){
             if(result.data != null) {
                 val data = result.data
-                peliculaPosicion = data?.getIntExtra("peliculaPosicion",0)!!
+                peliculaPosicion = data?.getIntExtra("posicionPelicula",0)!!
             }
         }
 
@@ -41,7 +41,7 @@ class ListaPersonajes : AppCompatActivity() {
         if (result.resultCode == Activity.RESULT_OK){
             if(result.data != null) {
                 val data = result.data
-                peliculaPosicion = data?.getIntExtra("peliculaPosicion",0)!!
+                peliculaPosicion = data?.getIntExtra("posicionPelicula",0)!!
             }
         }
 
@@ -50,8 +50,6 @@ class ListaPersonajes : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_personajes)
-
-
     }
 
     override fun onStart() {
@@ -66,15 +64,15 @@ class ListaPersonajes : AppCompatActivity() {
 
         val nombreRelacion = findViewById<TextView>(R.id.tv_Pelicula)
 
-        CompanionObjecto.arrayPeliculas.forEachIndexed{ indice: Int, pelicula : Pelicula ->
+        BaseDeDatoLocal.arrayPeliculas.forEachIndexed{ indice: Int, pelicula : Pelicula ->
             if (indice == peliculaPosicion){
                 idPelicula = pelicula.idPelicula
-                var label = "Pelcicula: ${pelicula.nombrePelicula}"
+                var label = "Pelicula: ${pelicula.nombrePelicula}"
                 nombreRelacion.setText(label)
             }
         }
 
-        CompanionObjecto.arrayRelacion_Pel_Per.forEachIndexed{ indice: Int, pelicula_personaje : Pelicula_Personaje ->
+        BaseDeDatoLocal.arrayRelacion_Pel_Per.forEachIndexed{ indice: Int, pelicula_personaje : Pelicula_Personaje ->
             if (idPelicula == pelicula_personaje.idPelicula){
                 listaPersonajes.add(pelicula_personaje.nombreRelacion.toString())
                 idRelacion_Pel_Per.add(pelicula_personaje.idRelacion_Pelicula_Personaje)
@@ -86,7 +84,7 @@ class ListaPersonajes : AppCompatActivity() {
         val adaptador = ArrayAdapter1(
             this,
             android.R.layout.simple_list_item_1,
-            CompanionObjecto.arrayPersonajes
+            BaseDeDatoLocal.arrayPersonajes
         )
         listaPersonajes.adapter = adaptador
         adaptador.notifyDataSetChanged()
@@ -134,8 +132,8 @@ class ListaPersonajes : AppCompatActivity() {
         clase: Class<*>
     ) {
         val intentEditarJugador = Intent(this, clase)
-        intentEditarJugador.putExtra("jugador", personajeSeleccionado)
-        intentEditarJugador.putExtra("posicionEquipoeditar",peliculaPosicion)
+        intentEditarJugador.putExtra("personaje", personajeSeleccionado)
+        intentEditarJugador.putExtra("posicionPeliculaeditar",peliculaPosicion)
         resultEditarPersonaje.launch(intentEditarJugador)
     }
 
@@ -143,7 +141,7 @@ class ListaPersonajes : AppCompatActivity() {
         clase: Class<*>
     ) {
         val intentAddNewJugador = Intent(this, clase)
-        intentAddNewJugador.putExtra("posicionEquipo",peliculaPosicion)
+        intentAddNewJugador.putExtra("posicionPelicula",peliculaPosicion)
         resultAnadirPersonaje.launch(intentAddNewJugador)
     }
 
@@ -154,13 +152,13 @@ class ListaPersonajes : AppCompatActivity() {
 
         var auxRelacion_Pel_Per = arrayListOf<Pelicula_Personaje>()
 
-        CompanionObjecto.arrayRelacion_Pel_Per.forEach{ pelicula_personaje:Pelicula_Personaje ->
+        BaseDeDatoLocal.arrayRelacion_Pel_Per.forEach{ pelicula_personaje:Pelicula_Personaje ->
             if(idJugadorAeliminar != pelicula_personaje.idRelacion_Pelicula_Personaje){
                 auxRelacion_Pel_Per.add(pelicula_personaje)
             }
         }
 
-        CompanionObjecto.arrayRelacion_Pel_Per = auxRelacion_Pel_Per
+        BaseDeDatoLocal.arrayRelacion_Pel_Per = auxRelacion_Pel_Per
 
         listaPersonajes.removeAt(itemS)
 

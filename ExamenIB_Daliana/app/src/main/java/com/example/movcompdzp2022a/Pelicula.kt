@@ -7,7 +7,7 @@ class Pelicula (
     val idPelicula: Int,
     var nombrePelicula: String?,
     var anioCreacion: Int?,
-    var numSagas: String?, //puede que sea string por el spinner
+    var numSagas: Int?,
     var presupuesto: Int?,
     var tuvoExito: String?
 
@@ -16,7 +16,7 @@ class Pelicula (
         parcel.readInt(),
         parcel.readString(),
         parcel.readInt(),
-        parcel.readString(),
+        parcel.readInt(),
         parcel.readInt(),
         parcel.readString()
     ) {

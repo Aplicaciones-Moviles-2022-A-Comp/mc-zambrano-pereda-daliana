@@ -6,20 +6,15 @@ import android.os.Parcelable
 class Personaje (
     val idPersonajes: Int,
     var nombrePersonaje: String?,
-    var edadPersonaje: Int?,
+    var edadPersonaje: Int,
     var generoPersonaje: String?,
     var nombrePelicula: String?,
     var esPrincesa: String?
 ) :Parcelable {
-
-    override fun toString(): String {
-        return "${nombrePersonaje}"
-    }
-
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
-        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString()

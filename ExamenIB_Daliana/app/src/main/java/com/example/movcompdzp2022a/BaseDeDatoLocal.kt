@@ -1,6 +1,6 @@
 package com.example.movcompdzp2022a
 
-class CompanionObjecto {
+class BaseDeDatoLocal {
 
     companion object {
         var arrayPeliculas = arrayListOf<Pelicula>()
@@ -9,10 +9,10 @@ class CompanionObjecto {
 
         init {
             //PELICULAS
-            arrayPeliculas.add(Pelicula(1, "Blancanieves y los 7 enanitos",1937,"1",1488423,"SI"))
-            arrayPeliculas.add(Pelicula(2, "La Sirenita",1989,"2",40000000,"SI"))
-            arrayPeliculas.add(Pelicula(3, "La Bella y la Bestia",1991,"3",25000000,"SI"))
-            arrayPeliculas.add(Pelicula(4, "Cenicienta",1950,"3",29000000,"SI"))
+            arrayPeliculas.add(Pelicula(1, "Blancanieves y los 7 enanitos",1937,1,1488423,"SI"))
+            arrayPeliculas.add(Pelicula(2, "La Sirenita",1989,2,40000000,"SI"))
+            arrayPeliculas.add(Pelicula(3, "La Bella y la Bestia",1991,3,25000000,"SI"))
+            arrayPeliculas.add(Pelicula(4, "Cenicienta",1950,3,29000000,"SI"))
 
             //PERSONAJES
             arrayPersonajes.add(Personaje(1, "Blancanieves",14, "Femenino", "Blancanieves y los 7 enanitos", "SI"))
@@ -23,10 +23,10 @@ class CompanionObjecto {
 
             //PELICULAS-PERSONAJES
             arrayRelacion_Pel_Per.add(Pelicula_Personaje(1, "Blancanieves", 1, 1))
-            arrayRelacion_Pel_Per.add(Pelicula_Personaje(1, "La Sirenita", 2, 5))
-            arrayRelacion_Pel_Per.add(Pelicula_Personaje(1, "La Bella y la Bestia", 3, 4))
-            arrayRelacion_Pel_Per.add(Pelicula_Personaje(1, "Cenicienta", 4, 2))
-            arrayRelacion_Pel_Per.add(Pelicula_Personaje(1, "Cenicienta", 4, 3))
+            arrayRelacion_Pel_Per.add(Pelicula_Personaje(2, "La Sirenita", 2, 5))
+            arrayRelacion_Pel_Per.add(Pelicula_Personaje(3, "La Bella y la Bestia", 3, 4))
+            arrayRelacion_Pel_Per.add(Pelicula_Personaje(4, "Cenicienta", 4, 2))
+            arrayRelacion_Pel_Per.add(Pelicula_Personaje(5, "Cenicienta", 4, 3))
         }
     }
 }

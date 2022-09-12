@@ -19,17 +19,18 @@ class ListaPeliculas_Main : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_peliculas_main)
+        Log.i("ciclo-vida", "onCreate")
     }
 
     override fun onStart() {
         super.onStart()
-
+        Log.i("ciclo-vida", "onStart")
         val listaPeliculas = findViewById<ListView>(R.id.lv_peliculas_lista)
 
         val adaptador = ArrayAdapter (
             this,
             android.R.layout.simple_list_item_1,
-            CompanionObjecto.arrayPeliculas
+            BaseDeDatoLocal.arrayPeliculas
         )
 
         listaPeliculas.adapter = adaptador
@@ -47,9 +48,9 @@ class ListaPeliculas_Main : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         outState.run {
             putInt("peliculaSeleccionada",peliculaSeleccionada)
-            putParcelableArrayList("arrayPeliculas",CompanionObjecto.arrayPeliculas)
-            putParcelableArrayList("arrayRelacion_Pel_Per",CompanionObjecto.arrayRelacion_Pel_Per)
-            putParcelableArrayList("arrayPersonajes",CompanionObjecto.arrayPersonajes)
+            putParcelableArrayList("arrayPeliculas",BaseDeDatoLocal.arrayPeliculas)
+            putParcelableArrayList("arrayRelacion_Pel_Per",BaseDeDatoLocal.arrayRelacion_Pel_Per)
+            putParcelableArrayList("arrayPersonajes",BaseDeDatoLocal.arrayPersonajes)
         }
         super.onSaveInstanceState(outState)
     }
@@ -57,9 +58,9 @@ class ListaPeliculas_Main : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         peliculaSeleccionada = savedInstanceState.getInt("peliculaSeleccionada")
-        CompanionObjecto.arrayPeliculas = savedInstanceState.getParcelableArrayList<Pelicula>("arrayPeliculas")!!
-        CompanionObjecto.arrayRelacion_Pel_Per = savedInstanceState.getParcelableArrayList<Pelicula_Personaje>("arrayRelacion_Pel_Per")!!
-        CompanionObjecto.arrayPersonajes = savedInstanceState.getParcelableArrayList<Personaje>("arrayPersonajes")!!
+        BaseDeDatoLocal.arrayPeliculas = savedInstanceState.getParcelableArrayList<Pelicula>("arrayPeliculas")!!
+        BaseDeDatoLocal.arrayRelacion_Pel_Per = savedInstanceState.getParcelableArrayList<Pelicula_Personaje>("arrayRelacion_Pel_Per")!!
+        BaseDeDatoLocal.arrayPersonajes = savedInstanceState.getParcelableArrayList<Personaje>("arrayPersonajes")!!
         if (peliculaSeleccionada == null){
             peliculaSeleccionada = 0
         }
@@ -67,7 +68,7 @@ class ListaPeliculas_Main : AppCompatActivity() {
         val adaptador = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
-            CompanionObjecto.arrayPeliculas
+            BaseDeDatoLocal.arrayPeliculas
         )
         listaPeliculas.adapter = adaptador
         adaptador.notifyDataSetChanged()
@@ -84,6 +85,7 @@ class ListaPeliculas_Main : AppCompatActivity() {
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val id = info.position
         peliculaSeleccionada = id
+        Log.i("context-menu", "ID ${id}")
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -120,27 +122,26 @@ class ListaPeliculas_Main : AppCompatActivity() {
     ) {
         val listaPelicula = findViewById<ListView>(R.id.lv_peliculas_lista)
 
-        var peliculaAeliminar = CompanionObjecto.arrayPeliculas.elementAt(posicionPeliculaAeliminar)
+        var peliculaAeliminar = BaseDeDatoLocal.arrayPeliculas.elementAt(posicionPeliculaAeliminar)
         var idPeliculaAeliminar = peliculaAeliminar.idPelicula
 
         var listaAuxPersonajes = arrayListOf<Pelicula_Personaje>()
 
-        CompanionObjecto.arrayRelacion_Pel_Per.forEachIndexed{ indice: Int, pelicula_personaje: Pelicula_Personaje ->
+        BaseDeDatoLocal.arrayRelacion_Pel_Per.forEachIndexed{ indice: Int, pelicula_personaje: Pelicula_Personaje ->
             if(idPeliculaAeliminar != pelicula_personaje.idPelicula){
                 listaAuxPersonajes.add(pelicula_personaje)
             }
         }
 
-        CompanionObjecto.arrayPeliculas.removeAt(posicionPeliculaAeliminar) //
-        CompanionObjecto.arrayRelacion_Pel_Per = listaAuxPersonajes //
+        BaseDeDatoLocal.arrayPeliculas.removeAt(posicionPeliculaAeliminar)
+        BaseDeDatoLocal.arrayRelacion_Pel_Per = listaAuxPersonajes
 
         val adaptador = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
-            CompanionObjecto.arrayPeliculas
+            BaseDeDatoLocal.arrayPeliculas
         )
         listaPelicula.adapter = adaptador
         adaptador.notifyDataSetChanged()
     }
-
 }

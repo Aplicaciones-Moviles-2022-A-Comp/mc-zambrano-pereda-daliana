@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Pelicula"
+        android:text="Película:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/tv_tituloPersonajes"
         app:layout_constraintStart_toStartOf="@+id/tv_tituloPersonajes"

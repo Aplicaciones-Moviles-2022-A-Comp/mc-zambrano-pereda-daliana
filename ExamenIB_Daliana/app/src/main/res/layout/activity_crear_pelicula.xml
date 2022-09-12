@@ -75,12 +75,13 @@
         app:layout_constraintStart_toStartOf="@+id/eTN_anioCreacionInputC"
         app:layout_constraintTop_toBottomOf="@+id/eTN_anioCreacionInputC" />
 
-    <TextView
+    <EditText
         android:id="@+id/sp_numSagasC"
         android:layout_width="275dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:textSize="14sp"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/tv_numSagasC"
         app:layout_constraintStart_toStartOf="@+id/tv_numSagasC"
         app:layout_constraintTop_toBottomOf="@+id/tv_numSagasC" />
@@ -119,7 +120,7 @@
         app:layout_constraintStart_toStartOf="@+id/etND_presupuestoInputC"
         app:layout_constraintTop_toBottomOf="@+id/etND_presupuestoInputC" />
 
-    <TextView
+    <EditText
         android:id="@+id/sp_exitoMercadoC"
         android:layout_width="275dp"
         android:layout_height="40dp"
@@ -155,10 +156,4 @@
         app:layout_constraintTop_toBottomOf="@+id/sp_exitoMercadoC"
         app:layout_constraintVertical_bias="0.509" />
 
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,7 @@ class Pelicula_Personaje (
     val idRelacion_Pelicula_Personaje: Int,
     var nombreRelacion: String?,
     var idPelicula: Int,
-    var idJugador: Int
+    var idPersonaje: Int
 
     ) : Parcelable {
 
@@ -28,7 +28,7 @@ class Pelicula_Personaje (
         parcel.writeInt(idRelacion_Pelicula_Personaje)
         parcel.writeString(nombreRelacion)
         parcel.writeInt(idPelicula)
-        parcel.writeInt(idJugador)
+        parcel.writeInt(idPersonaje)
     }
 
     override fun describeContents(): Int {
