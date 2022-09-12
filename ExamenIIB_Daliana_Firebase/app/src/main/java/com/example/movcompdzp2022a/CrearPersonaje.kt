@@ -6,15 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class CrearPersonaje : AppCompatActivity() {
 
-    var nextId = 0
-    var lastId = 0
-    var nombre = ""
-    var idPersonajeSeleccionado = 0
-    var PersonajePosicion = 0
-    var idPersonajeS = 0
+    var peliculaSeleccionada = Pelicula(0, "", 0, 0, 0, "")
+    val DB = Firebase.firestore
+    val peliculas = DB.collection("Peliculas")
+    val personajes = DB.collection("Personajes")
+    var idJugadorSeleccionado = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i("ciclo-vida","onCreate")
@@ -24,25 +26,11 @@ class CrearPersonaje : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.i("ciclo-vida","onStart")
+        Log.i("ciclo-vida", "onStart")
 
-        PersonajePosicion = intent.getIntExtra("posicionPersonaje", -1)
-        Log.i("posPersonaje","${PersonajePosicion}")
-
-        BaseDeDatoLocal.arrayPersonajes.forEachIndexed { indice: Int, personaje: Personaje ->
-            if (indice==PersonajePosicion){
-                idPersonajeS = personaje.idPersonajes
-            }
-        }
-
-        var longListaPersonajes = BaseDeDatoLocal.arrayRelacion_Pel_Per.lastIndex
-        BaseDeDatoLocal.arrayRelacion_Pel_Per.forEachIndexed { index: Int, peliculaPersonaje : Pelicula_Personaje ->
-            if (index == longListaPersonajes){
-                lastId = peliculaPersonaje.idRelacion_Pelicula_Personaje
-            }
-        }
-
-        nextId = lastId + 1
+        peliculaSeleccionada = intent.getParcelableExtra<Pelicula>("posicionPeliculas")!!
+        val peliculaSubColeccion = peliculas.document("${peliculaSeleccionada.idPelicula}")
+            .collection("Personaje")
 
         var nombrePersonajeI = findViewById<EditText>(R.id.tpn_nombreInputPerC)
         var edadI = findViewById<EditText>(R.id.eTN_edadInputC)
@@ -50,24 +38,28 @@ class CrearPersonaje : AppCompatActivity() {
         var nombrePeliculaI = findViewById<EditText>(R.id.etNP_nombrePeliInputC)
         var esPrincesaI = findViewById<EditText>(R.id.sp_princesaC)
 
+        Log.i("posPelicula", "${peliculaSeleccionada.idPelicula}")
+
         var btnGuardar = findViewById<Button>(R.id.btn_guardarPerC)
-
         btnGuardar.setOnClickListener {
-            var nombrePersonaje = nombrePersonajeI.text.toString()
-            var edad = edadI.text.toString().toInt()
-            var genero = generoI.text.toString()
-            var nombrePelicula = nombrePeliculaI.text.toString()
-            var esPrincesa = esPrincesaI.text.toString()
-
-            BaseDeDatoLocal.arrayRelacion_Pel_Per.add(
-                Pelicula_Personaje(nextId, nombrePersonaje, idPersonajeS, idPersonajeSeleccionado)
+            var personaje = hashMapOf(
+                "nombrePersonaje" to nombrePersonajeI.text.toString(),
+                "edad" to edadI.text.toString().toInt(),
+                "genero" to generoI.text.toString(),
+                "nombrePelicula" to nombrePeliculaI.text.toString(),
+                "esPrincesa" to esPrincesaI.text.toString()
             )
-            BaseDeDatoLocal.arrayPersonajes.add(
-                Personaje(idPersonajeSeleccionado, nombrePersonaje, edad, genero, nombrePelicula, esPrincesa)
-            )
-            respuesta()
-        }
+            peliculaSubColeccion.add(personaje).addOnSuccessListener {
+                Toast.makeText(this, "Personaje registrado exitosamente", Toast.LENGTH_SHORT)
+                    .show();
+                Log.i("Personaje creado", " con éxito")
+            }.addOnFailureListener {
+                Log.i("Personaje creado", " sin éxito")
+            }
 
+        val intentAddSuccess = Intent(this, ListaPersonajes::class.java)
+        startActivity(intentAddSuccess)
+    }
         var btnCancelar = findViewById<Button>(R.id.btn_cancelarPerC)
         btnCancelar.setOnClickListener {
             respuesta()
@@ -76,7 +68,7 @@ class CrearPersonaje : AppCompatActivity() {
 
     fun respuesta () {
         val devolverParametros = Intent()
-        devolverParametros.putExtra("posicionPersonaje", PersonajePosicion)
+        devolverParametros.putExtra("posicionPersonaje", peliculaSeleccionada)
         setResult(
             RESULT_OK,
             devolverParametros
