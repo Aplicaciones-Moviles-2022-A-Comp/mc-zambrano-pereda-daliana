@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ListaPersonajes">
 
-    <ImageButton
-        android:id="@+id/ibn_Volver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="#00FFFFFF"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_tituloPersonajes"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
-
     <TextView
         android:id="@+id/tv_tituloPersonajes"
         android:layout_width="wrap_content"

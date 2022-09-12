@@ -12,6 +12,11 @@ class Pelicula (
     var tuvoExito: String?
 
     ) : Parcelable {
+
+    override fun toString(): String {
+        return "${nombrePelicula}"
+    }
+
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),

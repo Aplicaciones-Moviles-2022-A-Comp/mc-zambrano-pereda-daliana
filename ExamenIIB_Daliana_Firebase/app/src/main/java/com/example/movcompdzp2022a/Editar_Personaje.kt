@@ -6,10 +6,16 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class Editar_Personaje : AppCompatActivity() {
 
-    var personajePos = 0
+    var peliculaSeleccionada = Pelicula(0, "", 0, 0, 0, "")
+    var personajeSeleccionado : Personaje? = Personaje(0, "", 0, "", "", "")
+    val DB = Firebase.firestore
+    val peliculas = DB.collection("Peliculas")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,10 +23,11 @@ class Editar_Personaje : AppCompatActivity() {
     }
 
     override fun onStart() {
+        Log.i("ciclo-vida", "onStart")
         super.onStart()
 
-        val idPelicula_Personaje = intent.getIntExtra("personaje", 1)
-        personajePos = intent.getIntExtra("poscicionPersonajeeditar", 1)
+        peliculaSeleccionada = intent.getParcelableExtra<Pelicula>("posicionPeliculaeditar")!!
+        personajeSeleccionado = intent.getParcelableExtra<Personaje>("personaje")!!
 
         var nombrePersonajeI = findViewById<EditText>(R.id.tpn_nombreInputPer)
         var edadPersonajeI = findViewById<EditText>(R.id.eTN_edadInput)
@@ -28,44 +35,27 @@ class Editar_Personaje : AppCompatActivity() {
         var nombrePeliculaI = findViewById<EditText>(R.id.etNP_nombrePeliInput)
         var esPrincesaI = findViewById<EditText>(R.id.sp_princesa)
 
-        var idPersonje: Int = 0
-
-        BaseDeDatoLocal.arrayRelacion_Pel_Per.forEachIndexed { index: Int, peliculaPersonaje: Pelicula_Personaje ->
-            if(idPelicula_Personaje == peliculaPersonaje.idRelacion_Pelicula_Personaje){
-                nombrePersonajeI.setText(peliculaPersonaje.nombreRelacion)
-                idPersonje = peliculaPersonaje.idPersonaje
-            }
-        }
-
-        BaseDeDatoLocal.arrayPersonajes.forEachIndexed { index: Int, personaje: Personaje ->
-            if (idPersonje == personaje.idPersonajes){
-                nombrePersonajeI.setText(personaje.nombrePersonaje)
-                edadPersonajeI.setText(personaje.edadPersonaje)
-                generoPersonajeI.setText(personaje.generoPersonaje)
-                nombrePeliculaI.setText(personaje.nombrePelicula)
-                esPrincesaI.setText(personaje.esPrincesa)
-            }
-        }
+        nombrePersonajeI.setText(personajeSeleccionado!!.nombrePersonaje)
+        edadPersonajeI.setText(personajeSeleccionado!!.edadPersonaje).toString()
+        generoPersonajeI.setText(personajeSeleccionado!!.generoPersonaje)
+        nombrePeliculaI.setText(personajeSeleccionado!!.nombrePelicula)
+        esPrincesaI.setText(personajeSeleccionado!!.esPrincesa)
 
         val btnGuardar = findViewById<Button>(R.id.btn_guardarPer)
         btnGuardar.setOnClickListener {
-            BaseDeDatoLocal.arrayRelacion_Pel_Per.forEachIndexed { index: Int, peliculaPersonaje: Pelicula_Personaje ->
-                if (idPelicula_Personaje == peliculaPersonaje.idRelacion_Pelicula_Personaje){
-                    Log.i("editar","${nombrePersonajeI.text.toString()}")
-                    peliculaPersonaje.nombreRelacion = (nombrePersonajeI.text.toString())
-                }
-            }
-
-            BaseDeDatoLocal.arrayPersonajes.forEachIndexed { index: Int, personaje: Personaje ->
-                if(idPersonje == personaje.idPersonajes){
-                    personaje.nombrePersonaje = nombrePersonajeI.text.toString()
-                    personaje.edadPersonaje = edadPersonajeI.text.toString().toInt()
-                    personaje.generoPersonaje = generoPersonajeI.text.toString()
-                    personaje.nombrePelicula = nombrePeliculaI.toString()
-                    personaje.esPrincesa = esPrincesaI.toString()
-                }
-            }
-            respuesta ()
+            peliculas.document("${peliculaSeleccionada.idPelicula}")
+                .collection("Personajes")
+                .document("${personajeSeleccionado!!.idPersonajes}")
+                .update(
+                    "nombrePersonaje", nombrePersonajeI.text.toString(),
+                    "edadPersonaje", edadPersonajeI.text.toString().toInt(),
+                    "generoPersonaje", generoPersonajeI.text.toString(),
+                    "nombrePelicula", nombrePeliculaI.text.toString(),
+                    "esPrincesa", esPrincesaI.text.toString()
+                )
+            Toast.makeText(this, "Los cambios han sido guardados exitosamente!", Toast.LENGTH_SHORT).show()
+            val intentEditSuccess = Intent (this, ListaPersonajes::class.java)
+            startActivity(intentEditSuccess)
         }
 
         val btnCancelar = findViewById<Button>(R.id.btn_cancelarPer)
@@ -76,7 +66,7 @@ class Editar_Personaje : AppCompatActivity() {
 
     fun respuesta () {
         val devolverParametro = Intent()
-        devolverParametro.putExtra("posicionPersonajeeditar", personajePos)
+        devolverParametro.putExtra("posicionPelicula", peliculaSeleccionada)
         setResult(
             RESULT_OK,
             devolverParametro

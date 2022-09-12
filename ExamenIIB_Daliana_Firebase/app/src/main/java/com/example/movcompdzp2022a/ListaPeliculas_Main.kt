@@ -11,10 +11,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class ListaPeliculas_Main : AppCompatActivity() {
 
-    var peliculaSeleccionada = 0
+    val DB = Firebase.firestore
+    val peliculas = DB.collection("Peliculas")
+    var idItemSeleccionado = 0
+    var adaptador: ArrayAdapter<Pelicula>?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,53 +31,12 @@ class ListaPeliculas_Main : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Log.i("ciclo-vida", "onStart")
-        val listaPeliculas = findViewById<ListView>(R.id.lv_peliculas_lista)
-
-        val adaptador = ArrayAdapter (
-            this,
-            android.R.layout.simple_list_item_1,
-            BaseDeDatoLocal.arrayPeliculas
-        )
-
-        listaPeliculas.adapter = adaptador
-        adaptador.notifyDataSetChanged()
-
-        this.registerForContextMenu(listaPeliculas)
-
-        val btnCrearPelicula = findViewById<Button>(R.id.bt_CrearPelicula)
-        btnCrearPelicula.setOnClickListener {
-            val intent = Intent (this, CrearPelicula::class.java)
-            startActivity(intent)
+        listarPelicula()
+        val btnAnadirPelicula = findViewById<Button>(R.id.bt_CrearPelicula)
+        btnAnadirPelicula.setOnClickListener {
+            val intentAddEquipo = Intent(this, CrearPelicula::class.java)
+            startActivity(intentAddEquipo)
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.run {
-            putInt("peliculaSeleccionada",peliculaSeleccionada)
-            putParcelableArrayList("arrayPeliculas",BaseDeDatoLocal.arrayPeliculas)
-            putParcelableArrayList("arrayRelacion_Pel_Per",BaseDeDatoLocal.arrayRelacion_Pel_Per)
-            putParcelableArrayList("arrayPersonajes",BaseDeDatoLocal.arrayPersonajes)
-        }
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        peliculaSeleccionada = savedInstanceState.getInt("peliculaSeleccionada")
-        BaseDeDatoLocal.arrayPeliculas = savedInstanceState.getParcelableArrayList<Pelicula>("arrayPeliculas")!!
-        BaseDeDatoLocal.arrayRelacion_Pel_Per = savedInstanceState.getParcelableArrayList<Pelicula_Personaje>("arrayRelacion_Pel_Per")!!
-        BaseDeDatoLocal.arrayPersonajes = savedInstanceState.getParcelableArrayList<Personaje>("arrayPersonajes")!!
-        if (peliculaSeleccionada == null){
-            peliculaSeleccionada = 0
-        }
-        val listaPeliculas = findViewById<ListView>(R.id.lv_peliculas_lista)
-        val adaptador = ArrayAdapter(
-            this,
-            android.R.layout.simple_list_item_1,
-            BaseDeDatoLocal.arrayPeliculas
-        )
-        listaPeliculas.adapter = adaptador
-        adaptador.notifyDataSetChanged()
     }
 
     override fun onCreateContextMenu(
@@ -84,64 +49,78 @@ class ListaPeliculas_Main : AppCompatActivity() {
         inflater.inflate(R.menu.menu, menu)
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val id = info.position
-        peliculaSeleccionada = id
+        idItemSeleccionado = id
         Log.i("context-menu", "ID ${id}")
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
+        var peliculaSeleccionada : Pelicula = adaptador!!.getItem(idItemSeleccionado)!!
         return when (item.itemId) {
             R.id.mi_editar -> {
-                Log.i("context-menu", "Edit position: ${peliculaSeleccionada}")
-                abrirActividadConParametros(Editar_Pelicula::class.java)
+                Log.i("context-menu", "Edit position: ${peliculaSeleccionada.idPelicula}")
+                val abrirEditarPelicula = Intent (this, Editar_Pelicula::class.java)
+                abrirEditarPelicula.putExtra("PosPeliculas", peliculaSeleccionada)
                 return true
             }
             R.id.mi_eliminar -> {
-                Log.i("context-menu", "Delete position: ${peliculaSeleccionada}")
-                eliminarPelicula(peliculaSeleccionada)
+                Log.i("context-menu", "Delete position: ${idItemSeleccionado}")
+                peliculas.document("${peliculaSeleccionada.idPelicula}").delete()
+                    .addOnSuccessListener {
+                        Log.i ("Pelicula eliminada", "con éxito")
+                    }
+                    .addOnFailureListener{
+                        Log.i ("Pelicula eliminada", "sin éxito")
+                    }
+
+                listarPelicula()
                 return true
             }
             R.id.mi_personaje -> {
-                Log.i("context-menu", "Pokemons: ${peliculaSeleccionada}")
-                abrirActividadConParametros(ListaPersonajes::class.java)
+                Log.i("context-menu", "Personajes: ${idItemSeleccionado}")
+                val abrirInicioPersonajes = Intent (this, ListaPersonajes::class.java)
+                abrirInicioPersonajes.putExtra("PosPeliculas", peliculaSeleccionada)
+                startActivity(abrirInicioPersonajes)
                 return true
             }
             else -> super.onContextItemSelected(item)
         }
     }
 
+    fun listarPelicula() {
+        val lv_peliculas = findViewById<ListView>(R.id.lv_peliculas_lista)
+        peliculas.get().addOnSuccessListener { result ->
+            var peliculaLista = arrayListOf<Pelicula>()
+            for (document in result){
+                peliculaLista.add(
+                    Pelicula(
+                        document.id.toString().toInt(),
+                        document.get("nombrePelicula").toString(),
+                        document.get("anioCreacion").toString().toInt(),
+                        document.get("numSagas").toString().toInt(),
+                        document.get("presupuesto").toString().toInt(),
+                        document.get("tuvoExito").toString(),
+                        )
+                )
+            }
+            adaptador = ArrayAdapter(
+                this,
+                android.R.layout.simple_expandable_list_item_1,
+                peliculaLista
+            )
+            lv_peliculas.adapter = adaptador
+            adaptador!!.notifyDataSetChanged()
+            registerForContextMenu(lv_peliculas)
+        }.addOnFailureListener{
+            Log.i("Error", "no se pudo crear la lista")
+        }
+    }
+
+
     fun abrirActividadConParametros(
         clase: Class<*>
     ) {
         val intentEditarPelicula = Intent(this, clase)
-        intentEditarPelicula.putExtra("posicionEditar", peliculaSeleccionada)
+        intentEditarPelicula.putExtra("posicionEditar", idItemSeleccionado)
         startActivity(intentEditarPelicula)
-    }
-
-    fun eliminarPelicula(
-        posicionPeliculaAeliminar: Int
-    ) {
-        val listaPelicula = findViewById<ListView>(R.id.lv_peliculas_lista)
-
-        var peliculaAeliminar = BaseDeDatoLocal.arrayPeliculas.elementAt(posicionPeliculaAeliminar)
-        var idPeliculaAeliminar = peliculaAeliminar.idPelicula
-
-        var listaAuxPersonajes = arrayListOf<Pelicula_Personaje>()
-
-        BaseDeDatoLocal.arrayRelacion_Pel_Per.forEachIndexed{ indice: Int, pelicula_personaje: Pelicula_Personaje ->
-            if(idPeliculaAeliminar != pelicula_personaje.idPelicula){
-                listaAuxPersonajes.add(pelicula_personaje)
-            }
-        }
-
-        BaseDeDatoLocal.arrayPeliculas.removeAt(posicionPeliculaAeliminar)
-        BaseDeDatoLocal.arrayRelacion_Pel_Per = listaAuxPersonajes
-
-        val adaptador = ArrayAdapter(
-            this,
-            android.R.layout.simple_list_item_1,
-            BaseDeDatoLocal.arrayPeliculas
-        )
-        listaPelicula.adapter = adaptador
-        adaptador.notifyDataSetChanged()
     }
 }

@@ -11,17 +11,18 @@ import android.widget.AdapterView
 import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import android.widget.ArrayAdapter as ArrayAdapter1
 
 class ListaPersonajes : AppCompatActivity() {
 
-    var personajeSeleccionado = 0
-    var idPelicula = 0
-    var peliculaPosicion = 0
-    var itemS = 0
-
-    var listaPersonajes = arrayListOf<String>()
-    var idRelacion_Pel_Per = arrayListOf<Int>()
+    var peliculaSeleccionada = Pelicula(0, "", 0, 0, 0, "")
+    val DB = Firebase.firestore
+    val peliculas = DB.collection("Peliculas")
+    var idItemSeleccionado = 0
+    var adapter : ArrayAdapter1<Personaje>?=null
+    var personajeSeleccionado : Personaje? = Personaje(0, "", 0, "", "", "")
 
     var resultAnadirPersonaje = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -29,7 +30,8 @@ class ListaPersonajes : AppCompatActivity() {
         if (result.resultCode == Activity.RESULT_OK){
             if(result.data != null) {
                 val data = result.data
-                peliculaPosicion = data?.getIntExtra("posicionPelicula",0)!!
+                peliculaSeleccionada = intent.getParcelableExtra<Pelicula>("PosPeliculas")!!
+
             }
         }
 
@@ -41,7 +43,7 @@ class ListaPersonajes : AppCompatActivity() {
         if (result.resultCode == Activity.RESULT_OK){
             if(result.data != null) {
                 val data = result.data
-                peliculaPosicion = data?.getIntExtra("posicionPelicula",0)!!
+                peliculaSeleccionada = intent.getParcelableExtra<Pelicula>("PosPeliculas")!!
             }
         }
 
@@ -56,46 +58,16 @@ class ListaPersonajes : AppCompatActivity() {
         super.onStart()
         Log.i("ciclo-vida", "onStart")
 
-        listaPersonajes = arrayListOf()
-        idRelacion_Pel_Per = arrayListOf()
-        peliculaPosicion = intent.getIntExtra("posicionEditar",1)
+        peliculaSeleccionada = intent.getParcelableExtra<Pelicula>("PosPeliculas")!!
+        listViewPersonajes()
 
-
-
-        val nombreRelacion = findViewById<TextView>(R.id.tv_Pelicula)
-
-        BaseDeDatoLocal.arrayPeliculas.forEachIndexed{ indice: Int, pelicula : Pelicula ->
-            if (indice == peliculaPosicion){
-                idPelicula = pelicula.idPelicula
-                var label = "Pelicula: ${pelicula.nombrePelicula}"
-                nombreRelacion.setText(label)
-            }
-        }
-
-        BaseDeDatoLocal.arrayRelacion_Pel_Per.forEachIndexed{ indice: Int, pelicula_personaje : Pelicula_Personaje ->
-            if (idPelicula == pelicula_personaje.idPelicula){
-                listaPersonajes.add(pelicula_personaje.nombreRelacion.toString())
-                idRelacion_Pel_Per.add(pelicula_personaje.idRelacion_Pelicula_Personaje)
-            }
-        }
-
-        val listaPersonajes = findViewById<ListView>(R.id.lv_personaje_lista)
-
-        val adaptador = ArrayAdapter1(
-            this,
-            android.R.layout.simple_list_item_1,
-            BaseDeDatoLocal.arrayPersonajes
-        )
-        listaPersonajes.adapter = adaptador
-        adaptador.notifyDataSetChanged()
+        val nombrePelicula = findViewById<TextView>(R.id.tv_Pelicula)
+        nombrePelicula.setText("Peliculas" + peliculaSeleccionada.nombrePelicula)
 
         val btnCrearPersonaje = findViewById<Button>(R.id.bt_CrearPersonaje)
         btnCrearPersonaje.setOnClickListener {
             abrirActividadAddPersonaje(CrearPersonaje::class.java)
         }
-
-        this.registerForContextMenu(listaPersonajes)
-
     }
 
     override fun onCreateContextMenu(
@@ -107,67 +79,82 @@ class ListaPersonajes : AppCompatActivity() {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_peliculas, menu)
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
-        val id = info.position
-        itemS = id
-        personajeSeleccionado = idRelacion_Pel_Per.elementAt(id)
+        idItemSeleccionado = info.position
+        Log.i("context-menu", "ID Personaje ${idItemSeleccionado}")
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
+        personajeSeleccionado = adapter!!.getItem(idItemSeleccionado)
         return when (item.itemId) {
             R.id.mi_editarPersonaje -> {
-                Log.i("context-menu", "Edit position: ${personajeSeleccionado}")
+                Log.i("context-menu", "Edit position: ${idItemSeleccionado}")
                 abrirActividadEditarPersonaje(Editar_Personaje::class.java)
                 return true
             }
             R.id.mi_eliminarPersonaje -> {
                 Log.i("context-menu", "Delete position: ${personajeSeleccionado}")
-                eliminarJugador(personajeSeleccionado)
+                val peliculaSubColeccion= peliculas.document("${peliculaSeleccionada.idPelicula}")
+                    .collection("Personajes")
+                    .document("${personajeSeleccionado!!.idPersonajes}")
+                    .delete()
+                    .addOnSuccessListener {
+                        Log.i("Personaje eliminado "," con exito")
+                    }
+                    .addOnFailureListener{
+                        Log.i("Personaje eliminado "," fallido")
+                    }
+                listViewPersonajes()
                 return true
             }
             else -> super.onContextItemSelected(item)
         }
     }
 
+    fun listViewPersonajes(){
+        val peliculaSubColeccion = peliculas.document("${peliculaSeleccionada.idPelicula}")
+            .collection("Personajes")
+            .whereEqualTo("idPelicula", "${peliculaSeleccionada.idPelicula}")
+
+        val personaje_lv = findViewById<ListView>(R.id.lv_personaje_lista)
+        peliculaSubColeccion.get().addOnSuccessListener { result ->
+            var listaPersonajes = arrayListOf<Personaje>()
+            for (document in result){
+                listaPersonajes.add(
+                    Personaje(
+                        document.id.toString().toInt(),
+                        document.data.get("nombrePersonaje").toString(),
+                        document.data.get("edadPersonaje").toString().toInt(),
+                        document.data.get("generoPersonaje").toString(),
+                        document.data.get("nombrePelicula").toString(),
+                        document.data.get("esPrincesa").toString(),
+                    )
+                )
+            }
+            adapter = android.widget.ArrayAdapter(
+                this,
+                android.R.layout.simple_expandable_list_item_1,
+                listaPersonajes
+            )
+            personaje_lv.adapter = adapter
+            adapter!!.notifyDataSetChanged()
+            registerForContextMenu(personaje_lv)
+        }
+    }
+
     fun abrirActividadEditarPersonaje(
         clase: Class<*>
     ) {
-        val intentEditarJugador = Intent(this, clase)
-        intentEditarJugador.putExtra("personaje", personajeSeleccionado)
-        intentEditarJugador.putExtra("posicionPeliculaeditar",peliculaPosicion)
-        resultEditarPersonaje.launch(intentEditarJugador)
+        val intentEditarPersonaje = Intent(this, clase)
+        intentEditarPersonaje.putExtra("personaje", personajeSeleccionado)
+        intentEditarPersonaje.putExtra("posicionPeliculaeditar",peliculaSeleccionada)
+        resultEditarPersonaje.launch(intentEditarPersonaje)
     }
 
     fun abrirActividadAddPersonaje(
         clase: Class<*>
     ) {
-        val intentAddNewJugador = Intent(this, clase)
-        intentAddNewJugador.putExtra("posicionPelicula",peliculaPosicion)
-        resultAnadirPersonaje.launch(intentAddNewJugador)
-    }
-
-    fun eliminarJugador(
-        idJugadorAeliminar: Int
-    ){
-        val listaPersonaje = findViewById<ListView>(R.id.lv_personaje_lista)
-
-        var auxRelacion_Pel_Per = arrayListOf<Pelicula_Personaje>()
-
-        BaseDeDatoLocal.arrayRelacion_Pel_Per.forEach{ pelicula_personaje:Pelicula_Personaje ->
-            if(idJugadorAeliminar != pelicula_personaje.idRelacion_Pelicula_Personaje){
-                auxRelacion_Pel_Per.add(pelicula_personaje)
-            }
-        }
-
-        BaseDeDatoLocal.arrayRelacion_Pel_Per = auxRelacion_Pel_Per
-
-        listaPersonajes.removeAt(itemS)
-
-        val adaptador = ArrayAdapter1(
-            this,
-            android.R.layout.simple_list_item_1,
-            listaPersonajes
-        )
-        listaPersonaje.adapter = adaptador
-        adaptador.notifyDataSetChanged()
+        val intentAddNewPersonaje = Intent(this, clase)
+        intentAddNewPersonaje.putExtra("posicionPelicula",peliculaSeleccionada)
+        resultAnadirPersonaje.launch(intentAddNewPersonaje)
     }
 }

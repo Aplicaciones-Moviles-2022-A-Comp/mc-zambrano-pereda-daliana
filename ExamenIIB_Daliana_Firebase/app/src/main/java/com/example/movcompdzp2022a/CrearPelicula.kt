@@ -5,16 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class CrearPelicula : AppCompatActivity() {
 
-    var nextId = 0
-    var lastId = 0
-    var nombrePelicula = ""
-    var anioCreacion = 0
-    var numSagas = 0
-    var presupuesto = 0
-    var tuvoExito = ""
+    val DB = Firebase.firestore
+    val peliculas = DB.collection("Peliculas")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,16 +20,6 @@ class CrearPelicula : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.i("ciclo-vida","onStart")
-        var longitudLista = BaseDeDatoLocal.arrayPeliculas.lastIndex
-        BaseDeDatoLocal.arrayPeliculas.forEachIndexed{ indice: Int, pelicula : Pelicula ->
-            if (indice == longitudLista){
-                lastId = pelicula.idPelicula
-            }
-        }
-
-        nextId = lastId+1
-
 
         var nombreP = findViewById<TextView>(R.id.tpn_nombreInputC)
         var anioCreacionP = findViewById<EditText>(R.id.eTN_anioCreacionInputC)
@@ -42,15 +29,18 @@ class CrearPelicula : AppCompatActivity() {
 
         var btnCrearPelicula = findViewById<Button>(R.id.btn_GuardadPeliculaC)
         btnCrearPelicula.setOnClickListener {
-            nombrePelicula = nombreP.text.toString()
-            anioCreacion = anioCreacionP.text.toString().toInt()
-            numSagas = numSagasP.text.toString().toInt()
-            presupuesto = presupuestoP.text.toString().toInt()
-            tuvoExito = tuvoExitoP.toString()
+            var pelicula = hashMapOf(
+                "nombrePelicula" to nombreP.text.toString(),
+                "anioCreacion" to anioCreacionP.text.toString().toInt(),
+                "numSagas" to numSagasP.text.toString().toInt(),
+                "presupuesto" to presupuestoP.text.toString().toInt(),
+                "tuvoExito" to tuvoExitoP.toString())
 
-            BaseDeDatoLocal.arrayPeliculas.add(
-                Pelicula(nextId, nombrePelicula, anioCreacion,numSagas,presupuesto,tuvoExito)
-            )
+            /*peliculas.add(pelicula).addOnSuccessListener {
+                nombreP.text!!.clear()
+
+            }*/
+
             val intentAddSucces = Intent(this, ListaPeliculas_Main::class.java)
             startActivity(intentAddSucces)
         }

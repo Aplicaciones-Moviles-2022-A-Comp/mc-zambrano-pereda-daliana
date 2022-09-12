@@ -34,6 +34,10 @@ class Personaje (
         return 0
     }
 
+    override fun toString(): String {
+        return "${nombrePersonaje}"
+    }
+
     companion object CREATOR : Parcelable.Creator<Personaje> {
         override fun createFromParcel(parcel: Parcel): Personaje {
             return Personaje(parcel)
